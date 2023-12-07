@@ -1,0 +1,23 @@
+{
+  "name": "flash-saizeriya",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/putchom/flash-saizeriya.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/putchom/flash-saizeriya/issues"
+  },
+  "homepage": "https://github.com/putchom/flash-saizeriya#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>画像ゲーム</title>
+  </head>
+  <body>
+    <h1>画像を見て正しいIDを当てよう！</h1>
+    <button id="startButton" onclick="startGame()">ゲーム開始</button>
+    <div id="gameContent" style="display: none">
+      <p id="questionNumber"></p>
+      <img id="gameImage" width="300" height="200" />
+      <p>
+        IDを入力してください: <input type="text" id="userInput" />
+        <button onclick="checkAnswer()">確認</button>
+      </p>
+      <p id="result"></p>
+    </div>
+    <p id="finalScore" style="display: none">
+      最終スコア: <span id="score">0</span>
+    </p>
+    <script>
+      const images = [
+        { id: 101, path: "image1.jpg" },
+        { id: 102, path: "image2.jpg" },
+        { id: 103, path: "image3.jpg" },
+        { id: 104, path: "image4.jpg" },
+        { id: 105, path: "image5.jpg" },
+        { id: 106, path: "image6.jpg" },
+        { id: 107, path: "image7.jpg" },
+        { id: 108, path: "image8.jpg" },
+        { id: 109, path: "image9.jpg" },
+        { id: 110, path: "image10.jpg" },
+        { id: 111, path: "image11.jpg" },
+        { id: 112, path: "image12.jpg" },
+        { id: 113, path: "image13.jpg" },
+        { id: 114, path: "image14.jpg" },
+        { id: 115, path: "image15.jpg" },
+        { id: 116, path: "image16.jpg" },
+        { id: 117, path: "image17.jpg" },
+        { id: 118, path: "image18.jpg" },
+        { id: 119, path: "image19.jpg" },
+        { id: 120, path: "image20.jpg" },
+      ];
+      let selectedImages = [];
+      let currentImageIndex = 0;
+      let score = 0;
+
+      const selectRandomImages = () => {
+        while (selectedImages.length < 5) {
+          const randomIndex = Math.floor(Math.random() * images.length);
+          const image = images[randomIndex];
+          if (!selectedImages.some((img) => img.id === image.id)) {
+            selectedImages.push(image);
+          }
+        }
+      };
+
+      const startGame = () => {
+        selectRandomImages();
+        document.getElementById("gameImage").src =
+          selectedImages[currentImageIndex].path;
+        updateQuestionNumber();
+        document.getElementById("startButton").style.display = "none";
+        document.getElementById("gameContent").style.display = "block";
+        console.log("正解のID: " + selectedImages[currentImageIndex].id); // デバッグ用の正解ID出力
+      };
+
+      const checkAnswer = () => {
+        const userAnswer = document.getElementById("userInput").value;
+        if (parseInt(userAnswer) === selectedImages[currentImageIndex].id) {
+          score++;
+          document.getElementById("result").innerText = "正解!";
+        } else {
+          document.getElementById("result").innerText = "不正解!";
+        }
+        document.getElementById("score").innerText = score;
+        currentImageIndex++;
+        nextImage();
+      };
+
+      const nextImage = () => {
+        if (currentImageIndex >= selectedImages.length) {
+          document.getElementById("gameContent").style.display = "none";
+          document.getElementById("finalScore").style.display = "block";
+          return;
+        }
+        document.getElementById("gameImage").src =
+          selectedImages[currentImageIndex].path;
+        updateQuestionNumber();
+        console.log("正解のID: " + selectedImages[currentImageIndex].id); // デバッグ用の正解ID出力
+      };
+
+      const updateQuestionNumber = () => {
+        document.getElementById("questionNumber").innerText = `現在の問題: ${
+          currentImageIndex + 1
+        } / 5`;
+      };
+    </script>
+  </body>
+</html>
