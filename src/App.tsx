@@ -48,7 +48,7 @@ const App = () => {
 
   const selectRandomImages = (): Image[] => {
     const selected: Image[] = [];
-    while (selected.length < 5) {
+    while (selected.length < 10) {
       const randomIndex = Math.floor(Math.random() * images.length);
       const image = images[randomIndex];
       if (!selected.some((img) => img.id === image.id)) {
@@ -88,7 +88,9 @@ const App = () => {
 
     if (currentImageIndex === selectedImages.length - 1) {
       setGameStatus(GameStatus.END);
-      setTweetText(`私の得点は ${score} 点でした！ #フラッシュサイゼリヤ`);
+      setTweetText(
+        `サイゼリヤのメニュー番号を ${score} 個当てました！ #サイゼリヤ注文トレーナー`
+      );
     }
 
     setUserInput("");
@@ -110,38 +112,54 @@ const App = () => {
   return (
     <div>
       <div>
-        <h1>フラッシュサイゼリヤ</h1>
+        <h1>サイゼリヤ注文トレーナー</h1>
+        <nav>
+          <ul>
+            <li>
+              <a
+                href="https://book.saizeriya.co.jp/library/menu1907/book/list"
+                target="_blank"
+              >
+                メニューを見る
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
       {gameStatus === GameStatus.START && (
         <div>
-          <h2>サイゼリヤのメニューの写真を見て注文IDを当てよう</h2>
+          <p>
+            ランダムに表示されるサイゼリヤの料理を見てメニュー番号を当てましょう。
+            <br />
+            極めるとサイゼリヤの注文が高速に行えるようになるかも！？
+          </p>
           <button onClick={startGame}>プレイ</button>
         </div>
       )}
       {gameStatus === GameStatus.PLAYING && (
         <div>
-          <p>現在の問題: {currentImageIndex + 1} / 5</p>
+          <p>{currentImageIndex + 1} / 10</p>
           <img
             src={selectedImages[currentImageIndex]?.path}
             width="300"
             height="200"
           />
           <p>
-            IDを入力してください:
+            メニュー番号を入力:
             <input
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
             />
-            <button onClick={checkAnswer}>次へ</button>{" "}
+            <button onClick={checkAnswer}>OK</button>{" "}
           </p>
           {answerFeedback && <p>{answerFeedback}</p>}
         </div>
       )}
       {gameStatus === GameStatus.END && (
         <div>
-          <p>得点: {score}</p>
-          <button onClick={tweetScore}>得点をツイート</button>
+          <p>結果: {score}個正解</p>
+          <button onClick={tweetScore}>結果をツイート</button>
           <button onClick={restartGame}>もう一度プレイ</button>
           <div>
             <h2>正解</h2>
