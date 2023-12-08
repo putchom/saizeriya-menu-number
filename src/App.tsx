@@ -41,10 +41,10 @@ const App = () => {
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.START);
   const [userInput, setUserInput] = useState<string>("");
   const [tweetText, setTweetText] = useState<string>("");
-  const [currentInputId, setCurrentInputId] = useState<string | null>(null); // 文字列型に変更
+  const [currentInputId, setCurrentInputId] = useState<string | null>(null);
   const [answerFeedback, setAnswerFeedback] = useState<string | null>(null);
-  const [correctAnswers, setCorrectAnswers] = useState<Image[]>([]); // 正解した項目を格納する配列
-  const [incorrectAnswers, setIncorrectAnswers] = useState<Image[]>([]); // 不正解だった項目を格納する配列
+  const [correctAnswers, setCorrectAnswers] = useState<Image[]>([]);
+  const [incorrectAnswers, setIncorrectAnswers] = useState<Image[]>([]);
 
   const selectRandomImages = (): Image[] => {
     const selected: Image[] = [];
@@ -88,7 +88,7 @@ const App = () => {
 
     if (currentImageIndex === selectedImages.length - 1) {
       setGameStatus(GameStatus.END);
-      setTweetText(`私の得点は ${score} 点でした！ #ImageGame`);
+      setTweetText(`私の得点は ${score} 点でした！ #フラッシュサイゼリヤ`);
     }
 
     setUserInput("");
