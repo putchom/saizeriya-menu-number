@@ -19,31 +19,29 @@ const App = () => {
   const [score, setScore] = useState<number>(0);
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.START);
   const [userInput, setUserInput] = useState<string>("");
-  const [tweetText, setTweetText] = useState<string>("");
   const [correctAnswers, setCorrectAnswers] = useState<Meal[]>([]);
   const [incorrectAnswers, setIncorrectAnswers] = useState<Meal[]>([]);
 
-  const selectRandomMeals = (): Meal[] => {
+  const selectRandomMeals = () => {
     const selected: Meal[] = [];
     while (selected.length < 10) {
       const randomIndex = Math.floor(Math.random() * meals.length);
-      const image = meals[randomIndex];
-      if (!selected.some((img) => img.id === image.id)) {
-        selected.push(image);
+      const meal = meals[randomIndex];
+      if (!selected.some((item) => item.id === meal.id)) {
+        selected.push(meal);
       }
     }
     return selected;
   };
 
-  const startGame = (): void => {
+  const startGame = () => {
     setSelectedMeals(selectRandomMeals());
     setGameStatus(GameStatus.PLAYING);
     setCurrentMealIndex(0);
     setScore(0);
-    setTweetText("");
   };
 
-  const checkAnswer = (): void => {
+  const checkAnswer = () => {
     const currentMeal = selectedMeals[currentMealIndex];
     if (currentMeal && userInput === currentMeal.id) {
       setScore(score + 1);
@@ -55,22 +53,12 @@ const App = () => {
 
     if (currentMealIndex === selectedMeals.length - 1) {
       setGameStatus(GameStatus.END);
-      setTweetText(
-        `サイゼのメニュー番号を ${score} 個当てました！ #サイゼのメニュー番号を当てろ！`,
-      );
     }
 
     setUserInput("");
   };
 
-  const tweetScore = (): void => {
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      tweetText,
-    )}`;
-    window.open(tweetUrl, "_blank");
-  };
-
-  const restartGame = (): void => {
+  const restartGame = () => {
     startGame();
     setCorrectAnswers([]);
     setIncorrectAnswers([]);
@@ -92,7 +80,6 @@ const App = () => {
       {gameStatus === GameStatus.END && (
         <EndPage
           score={score}
-          tweetScore={tweetScore}
           restartGame={restartGame}
           correctAnswers={correctAnswers}
           incorrectAnswers={incorrectAnswers}

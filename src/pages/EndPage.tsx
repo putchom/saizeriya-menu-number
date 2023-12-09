@@ -3,15 +3,20 @@ import { Meal } from "../types";
 
 type EndPageProps = {
   score: number;
-  tweetScore: () => void;
   restartGame: () => void;
   correctAnswers: Meal[];
   incorrectAnswers: Meal[];
 };
 
 const EndPage = (props: EndPageProps) => {
-  const { score, tweetScore, restartGame, correctAnswers, incorrectAnswers } =
-    props;
+  const { score, restartGame, correctAnswers, incorrectAnswers } = props;
+
+  const tweetScore = () => {
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      `サイゼのメニュー番号を ${score} 個当てました！ #サイゼのメニュー番号を当てろ`,
+    )}`;
+    window.open(tweetUrl, "_blank");
+  };
 
   return (
     <div>
