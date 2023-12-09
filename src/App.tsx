@@ -515,7 +515,7 @@ const App = () => {
   const [correctAnswers, setCorrectAnswers] = useState<Meal[]>([]);
   const [incorrectAnswers, setIncorrectAnswers] = useState<Meal[]>([]);
 
-  const selectRandomImages = (): Meal[] => {
+  const selectRandomMeals = (): Meal[] => {
     const selected: Meal[] = [];
     while (selected.length < 10) {
       const randomIndex = Math.floor(Math.random() * meals.length);
@@ -528,8 +528,7 @@ const App = () => {
   };
 
   const startGame = (): void => {
-    const newSelectedMeals = selectRandomImages();
-    setSelectedMeals(newSelectedMeals);
+    setSelectedMeals(selectRandomMeals());
     setGameStatus(GameStatus.PLAYING);
     setCurrentMealIndex(0);
     setScore(0);
