@@ -1,3 +1,4 @@
+import AnswerListItem from "../components/AnswerListItem";
 import { Meal } from "../types";
 
 type EndPageProps = {
@@ -23,28 +24,22 @@ const EndPage = (props: EndPageProps) => {
       </button>
       <div>
         <h2>正解</h2>
-        {correctAnswers.length === 0 && <p>なし</p>}
-        {correctAnswers.length > 0 && (
+        {correctAnswers.length === 0 ? (
+          <p>なし</p>
+        ) : (
           <ul>
             {correctAnswers.map((item) => (
-              <li key={item.id}>
-                <img src={item.imagePath} alt={`ID: ${item.id}`} width="100" />
-                <p>{item.name}</p>
-                <p>{item.id}</p>
-              </li>
+              <AnswerListItem key={item.id} meal={item} />
             ))}
           </ul>
         )}
         <h2>不正解</h2>
-        {incorrectAnswers.length === 0 && <p>なし</p>}
-        {incorrectAnswers.length > 0 && (
+        {incorrectAnswers.length === 0 ? (
+          <p>なし</p>
+        ) : (
           <ul>
             {incorrectAnswers.map((item) => (
-              <li key={item.id}>
-                <img src={item.imagePath} alt={`ID: ${item.id}`} width="100" />
-                <p>{item.name}</p>
-                <p>{item.id}</p>
-              </li>
+              <AnswerListItem key={item.id} meal={item} />
             ))}
           </ul>
         )}

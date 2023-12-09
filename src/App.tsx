@@ -56,7 +56,7 @@ const App = () => {
     if (currentMealIndex === selectedMeals.length - 1) {
       setGameStatus(GameStatus.END);
       setTweetText(
-        `サイゼのメニュー番号を ${score} 個当てました！ #サイゼの注文番号を当てろ！`,
+        `サイゼのメニュー番号を ${score} 個当てました！ #サイゼのメニュー番号を当てろ！`,
       );
     }
 
