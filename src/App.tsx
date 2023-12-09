@@ -8,9 +8,9 @@ interface Image {
 }
 
 enum GameStatus {
-  START,
-  PLAYING,
-  END,
+  START = 0,
+  PLAYING = 1,
+  END = 2,
 }
 
 const App = () => {
@@ -512,7 +512,6 @@ const App = () => {
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.START);
   const [userInput, setUserInput] = useState<string>("");
   const [tweetText, setTweetText] = useState<string>("");
-  const [currentInputId, setCurrentInputId] = useState<string | null>(null);
   const [answerFeedback, setAnswerFeedback] = useState<string | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState<Image[]>([]);
   const [incorrectAnswers, setIncorrectAnswers] = useState<Image[]>([]);
@@ -536,10 +535,7 @@ const App = () => {
     setCurrentImageIndex(0);
     setScore(0);
     setTweetText("");
-    setCurrentInputId(newSelectedImages[0].id);
     setAnswerFeedback(null);
-
-    console.log("正解のメニュー番号: ", newSelectedImages[0].id);
   };
 
   const checkAnswer = (): void => {
@@ -552,18 +548,10 @@ const App = () => {
     }
     setCurrentImageIndex(currentImageIndex + 1);
 
-    if (currentImageIndex < selectedImages.length - 1) {
-      setCurrentInputId(selectedImages[currentImageIndex + 1].id);
-      console.log(
-        "正解のメニュー番号: ",
-        selectedImages[currentImageIndex + 1]?.id
-      );
-    }
-
     if (currentImageIndex === selectedImages.length - 1) {
       setGameStatus(GameStatus.END);
       setTweetText(
-        `サイゼリヤのメニュー番号を ${score} 個当てました！ #サイゼリヤの注文番号を当てろ！`
+        `サイゼリヤのメニュー番号を ${score} 個当てました！ #サイゼリヤの注文番号を当てろ！`,
       );
     }
 
@@ -572,7 +560,7 @@ const App = () => {
 
   const tweetScore = (): void => {
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      tweetText
+      tweetText,
     )}`;
     window.open(tweetUrl, "_blank");
   };
@@ -593,6 +581,7 @@ const App = () => {
               <a
                 href="https://book.saizeriya.co.jp/library/menu1907/book/list"
                 target="_blank"
+                rel="noreferrer"
               >
                 チートシート
               </a>
@@ -618,13 +607,19 @@ const App = () => {
             <br />
             当てまくれ！
           </p>
-          <button onClick={startGame}>プレイ</button>
+          <button type="button" onClick={startGame}>
+            プレイ
+          </button>
         </div>
       )}
       {gameStatus === GameStatus.PLAYING && (
         <div>
           <p>{currentImageIndex + 1} / 10</p>
-          <img src={selectedImages[currentImageIndex]?.path} width="300" />
+          <img
+            src={selectedImages[currentImageIndex]?.path}
+            width="300"
+            alt={selectedImages[currentImageIndex]?.name}
+          />
           <p>{selectedImages[currentImageIndex]?.name}</p>
           <label>
             <div>メニュー番号</div>
@@ -635,7 +630,9 @@ const App = () => {
               placeholder="(例) AA01"
               required
             />
-            <button onClick={checkAnswer}>回答</button>{" "}
+            <button type="button" onClick={checkAnswer}>
+              回答
+            </button>{" "}
           </label>
           {answerFeedback && <p>{answerFeedback}</p>}
         </div>
@@ -643,8 +640,12 @@ const App = () => {
       {gameStatus === GameStatus.END && (
         <div>
           <p>結果: {score}個正解</p>
-          <button onClick={tweetScore}>結果をツイート</button>
-          <button onClick={restartGame}>もう一度プレイ</button>
+          <button type="button" onClick={tweetScore}>
+            結果をツイート
+          </button>
+          <button type="button" onClick={restartGame}>
+            もう一度プレイ
+          </button>
           <div>
             <h2>正解</h2>
             {correctAnswers.length === 0 && <p>なし</p>}
