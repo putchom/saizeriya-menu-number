@@ -1,0 +1,492 @@
+[
+  {
+    "id": "AA01",
+    "name": "辛味チキン",
+    "imagePath": "/images/AA01.png"
+  },
+  {
+    "id": "AA02",
+    "name": "アロスティチーニ",
+    "imagePath": "/images/AA02.png"
+  },
+  {
+    "id": "AA03",
+    "name": "ほうれん草のソテー",
+    "imagePath": "/images/AA03.png"
+  },
+  {
+    "id": "AA04",
+    "name": "ポップコーンシュリンプ",
+    "imagePath": "/images/AA04.png"
+  },
+  {
+    "id": "AA05",
+    "name": "エスカルゴのオーブン焼き",
+    "imagePath": "/images/AA05.png"
+  },
+  {
+    "id": "AA06",
+    "name": "小エビのカクテル",
+    "imagePath": "/images/AA06.png"
+  },
+  {
+    "id": "AA07",
+    "name": "チョリソー",
+    "imagePath": "/images/AA07.png"
+  },
+  {
+    "id": "AA08",
+    "name": "蒸し鶏の香味ソース",
+    "imagePath": "/images/AA08.png"
+  },
+  {
+    "id": "AA10",
+    "name": "ムール貝のガーリック焼き",
+    "imagePath": "/images/AA10.png"
+  },
+  {
+    "id": "AA13",
+    "name": "爽やかにんじんサラダ",
+    "imagePath": "/images/AA13.png"
+  },
+  {
+    "id": "AA14",
+    "name": "モッツァレラトマト",
+    "imagePath": "/images/AA14.png"
+  },
+  {
+    "id": "AA15",
+    "name": "カリッとポテト",
+    "imagePath": "/images/AA15.png"
+  },
+  {
+    "id": "AA22",
+    "name": "生ハム(ハモン・セラーノ)",
+    "imagePath": "/images/AA22.png"
+  },
+  {
+    "id": "AA25",
+    "name": "柔らか青豆の温サラダ",
+    "imagePath": "/images/AA25.png"
+  },
+  {
+    "id": "AA52",
+    "name": "アロスティチーニ（Wサイズ）",
+    "imagePath": "/images/AA52.png"
+  },
+  {
+    "id": "BR01",
+    "name": "生ビール キリン一番搾り(ジョッキ)",
+    "imagePath": "/images/BR01.png"
+  },
+  {
+    "id": "BR02",
+    "name": "生ビール キリン一番搾り(グラスビール)",
+    "imagePath": "/images/BR02.png"
+  },
+  {
+    "id": "BR03",
+    "name": "アサヒドライゼロ",
+    "imagePath": "/images/BR03.png"
+  },
+  {
+    "id": "BR04",
+    "name": "キリン氷結シチリア産レモン",
+    "imagePath": "/images/BR04.png"
+  },
+  {
+    "id": "BR06",
+    "name": "グラッパ",
+    "imagePath": "/images/BR06.png"
+  },
+  {
+    "id": "DB01",
+    "name": "セットドリンクバー",
+    "imagePath": "/images/DB01.png"
+  },
+  {
+    "id": "DB02",
+    "name": "キッズドリンクバー",
+    "imagePath": "/images/DB02.png"
+  },
+  {
+    "id": "DB03",
+    "name": "単品ドリンクバー",
+    "imagePath": "/images/DB03.png"
+  },
+  {
+    "id": "DE01",
+    "name": "ティラミスクラシコ",
+    "imagePath": "/images/DE01.png"
+  },
+  {
+    "id": "DE04",
+    "name": "ジェラート&シナモンプチフォッカ",
+    "imagePath": "/images/DE04.png"
+  },
+  {
+    "id": "DE05",
+    "name": "イタリアンジェラート",
+    "imagePath": "/images/DE05.png"
+  },
+  {
+    "id": "DE06",
+    "name": "イタリアンプリン",
+    "imagePath": "/images/DE06.png"
+  },
+  {
+    "id": "DE07",
+    "name": "チョコレートケーキ",
+    "imagePath": "/images/DE07.png"
+  },
+  {
+    "id": "DE12",
+    "name": "プリンとティラミスクラシコの盛り合わせ",
+    "imagePath": "/images/DE12.png"
+  },
+  {
+    "id": "DE13",
+    "name": "トリフアイスクリーム",
+    "imagePath": "/images/DE13.png"
+  },
+  {
+    "id": "DE15",
+    "name": "コーヒーゼリー&イタリアンジェラート",
+    "imagePath": "/images/DE15.png"
+  },
+  {
+    "id": "DE25",
+    "name": "シチリア産ピスタチオのジェラート",
+    "imagePath": "/images/DE25.png"
+  },
+  {
+    "id": "DG01",
+    "name": "ミラノ風ドリア",
+    "imagePath": "/images/DG01.png"
+  },
+  {
+    "id": "DG03",
+    "name": "半熟卵のミラノ風ドリア",
+    "imagePath": "/images/DG03.png"
+  },
+  {
+    "id": "DG06",
+    "name": "タラコとエビのドリア",
+    "imagePath": "/images/DG06.png"
+  },
+  {
+    "id": "DG07",
+    "name": "エビクリームグラタン",
+    "imagePath": "/images/DG07.png"
+  },
+  {
+    "id": "DG08",
+    "name": "焼きチーズ ミラノ風ドリア",
+    "imagePath": "/images/DG08.png"
+  },
+  {
+    "id": "KZ05",
+    "name": "おこさまポップコーンシュリンプ",
+    "imagePath": "/images/KZ05.png"
+  },
+  {
+    "id": "KZ06",
+    "name": "おこさまポテト",
+    "imagePath": "/images/KZ06.png"
+  },
+  {
+    "id": "MT02",
+    "name": "若鶏のディアボラ風",
+    "imagePath": "/images/MT02.png"
+  },
+  {
+    "id": "MT03",
+    "name": "イタリアンハンバーグ",
+    "imagePath": "/images/MT03.png"
+  },
+  {
+    "id": "MT04",
+    "name": "柔らかチキンのチーズ焼き",
+    "imagePath": "/images/MT04.png"
+  },
+  {
+    "id": "MT06",
+    "name": "ハンバーグステーキ",
+    "imagePath": "/images/MT06.png"
+  },
+  {
+    "id": "MT07",
+    "name": "ディアボラ風ハンバーグ",
+    "imagePath": "/images/MT07.png"
+  },
+  {
+    "id": "MT13",
+    "name": "ラムと野菜のグリル",
+    "imagePath": "/images/MT13.png"
+  },
+  {
+    "id": "MT18",
+    "name": "チョリソーとハンバーグの盛合せ",
+    "imagePath": "/images/MT18.png"
+  },
+  {
+    "id": "PA01",
+    "name": "タラコソースシシリー風",
+    "imagePath": "/images/PA01.png"
+  },
+  {
+    "id": "PA02",
+    "name": "ミートソースボロニア風",
+    "imagePath": "/images/PA02.png"
+  },
+  {
+    "id": "PA03",
+    "name": "ペペロンチーノ",
+    "imagePath": "/images/PA03.png"
+  },
+  {
+    "id": "PA04",
+    "name": "パルマ風スパゲッティ",
+    "imagePath": "/images/PA04.png"
+  },
+  {
+    "id": "PA05",
+    "name": "カルボナーラ",
+    "imagePath": "/images/PA05.png"
+  },
+  {
+    "id": "PA10",
+    "name": "スープ入り塩味ボンゴレ",
+    "imagePath": "/images/PA10.png"
+  },
+  {
+    "id": "PA11",
+    "name": "イカの墨入りスパゲッティ",
+    "imagePath": "/images/PA11.png"
+  },
+  {
+    "id": "PA12",
+    "name": "ミートソースボロニア風",
+    "imagePath": "/images/PA12.png"
+  },
+  {
+    "id": "PA14",
+    "name": "エビとアスパラガスのオーロラソース",
+    "imagePath": "/images/PA14.png"
+  },
+  {
+    "id": "PA16",
+    "name": "きのことチキンのスパゲッティ",
+    "imagePath": "/images/PA16.png"
+  },
+  {
+    "id": "PA17",
+    "name": "半熟卵のペペロンチーノ",
+    "imagePath": "/images/PA17.png"
+  },
+  {
+    "id": "PA18",
+    "name": "たっぷりペコリーノチーズのカルボナーラ",
+    "imagePath": "/images/PA18.png"
+  },
+  {
+    "id": "PA20",
+    "name": "小エビのたらこソース",
+    "imagePath": "/images/PA20.png"
+  },
+  {
+    "id": "PA23",
+    "name": "たっぷりペコリーノチーズのパルマ風スパゲッティ",
+    "imagePath": "/images/PA23.png"
+  },
+  {
+    "id": "PA25",
+    "name": "ペンネアラビアータ",
+    "imagePath": "/images/PA25.png"
+  },
+  {
+    "id": "PZ01",
+    "name": "マルゲリータピザ",
+    "imagePath": "/images/PZ01.png"
+  },
+  {
+    "id": "PZ02",
+    "name": "バッファローモッツァレラのピザ",
+    "imagePath": "/images/PZ02.png"
+  },
+  {
+    "id": "PZ04",
+    "name": "野菜ときのこのピザ",
+    "imagePath": "/images/PZ04.png"
+  },
+  {
+    "id": "PZ06",
+    "name": "たっぷりコーンのピザ",
+    "imagePath": "/images/PZ06.png"
+  },
+  {
+    "id": "PZ08",
+    "name": "ソーセージピザ",
+    "imagePath": "/images/PZ08.png"
+  },
+  {
+    "id": "RP01",
+    "name": "ライス",
+    "imagePath": "/images/RP01.png"
+  },
+  {
+    "id": "RP02",
+    "name": "ラージライス",
+    "imagePath": "/images/RP02.png"
+  },
+  {
+    "id": "RP03",
+    "name": "スモールライス",
+    "imagePath": "/images/RP03.png"
+  },
+  {
+    "id": "RP04",
+    "name": "シナモンプチフォッカ",
+    "imagePath": "/images/RP04.png"
+  },
+  {
+    "id": "RP06",
+    "name": "プチフォッカ",
+    "imagePath": "/images/RP06.png"
+  },
+  {
+    "id": "RP08",
+    "name": "ミニフィセル",
+    "imagePath": "/images/RP08.png"
+  },
+  {
+    "id": "RP09",
+    "name": "ガーリックトースト",
+    "imagePath": "/images/RP09.png"
+  },
+  {
+    "id": "SA02",
+    "name": "小エビのサラダ",
+    "imagePath": "/images/SA02.png"
+  },
+  {
+    "id": "SA05",
+    "name": "わかめのサラダ",
+    "imagePath": "/images/SA05.png"
+  },
+  {
+    "id": "SA07",
+    "name": "モッツァレラのサラダ",
+    "imagePath": "/images/SA07.png"
+  },
+  {
+    "id": "SA08",
+    "name": "グリーンサラダ",
+    "imagePath": "/images/SA08.png"
+  },
+  {
+    "id": "SA09",
+    "name": "チキンのサラダ",
+    "imagePath": "/images/SA09.png"
+  },
+  {
+    "id": "SU01",
+    "name": "コーンクリームスープ",
+    "imagePath": "/images/SU01.png"
+  },
+  {
+    "id": "SU05",
+    "name": "田舎風ミネストローネ",
+    "imagePath": "/images/SU05.png"
+  },
+  {
+    "id": "RP09",
+    "name": "たまねぎのズッパ",
+    "imagePath": "/images/RP09.png"
+  },
+  {
+    "id": "SU07",
+    "name": "トッピング半熟卵",
+    "imagePath": "/images/SU07.png"
+  },
+  {
+    "id": "TP01",
+    "name": "野菜ペースト",
+    "imagePath": "/images/TP01.png"
+  },
+  {
+    "id": "TP04",
+    "name": "トッピング粉チーズ(グランモアビア)",
+    "imagePath": "/images/TP04.png"
+  },
+  {
+    "id": "WN01",
+    "name": "グラスワイン 赤",
+    "imagePath": "/images/WN01.png"
+  },
+  {
+    "id": "WN02",
+    "name": "グラスワイン 白",
+    "imagePath": "/images/WN02.png"
+  },
+  {
+    "id": "WN03",
+    "name": "デカンタ(250ml) 赤",
+    "imagePath": "/images/WN03.png"
+  },
+  {
+    "id": "WN04",
+    "name": "デカンタ(250ml) 白",
+    "imagePath": "/images/WN04.png"
+  },
+  {
+    "id": "WN05",
+    "name": "デカンタ(500ml) 赤",
+    "imagePath": "/images/WN05.png"
+  },
+  {
+    "id": "WN06",
+    "name": "デカンタ(500ml) 白",
+    "imagePath": "/images/WN06.png"
+  },
+  {
+    "id": "WN07",
+    "name": "マグナム(1500ml) 赤",
+    "imagePath": "/images/WN07.png"
+  },
+  {
+    "id": "WN08",
+    "name": "マグナム(1500ml) 白",
+    "imagePath": "/images/WN08.png"
+  },
+  {
+    "id": "WN12",
+    "name": "ランブルスコロゼ【(ロゼ・発泡)甘口】",
+    "imagePath": "/images/WN12.png"
+  },
+  {
+    "id": "WN13",
+    "name": "ドンラファエロ【(白・発泡)辛口】",
+    "imagePath": "/images/WN13.png"
+  },
+  {
+    "id": "WN14",
+    "name": "ランブルスコセッコ【(赤・発泡)辛口】",
+    "imagePath": "/images/WN14.png"
+  },
+  {
+    "id": "WN15",
+    "name": "ベルデッキオ【(白)辛口】",
+    "imagePath": "/images/WN15.png"
+  },
+  {
+    "id": "WN16",
+    "name": "キャンティ【(赤)辛口】",
+    "imagePath": "/images/WN16.png"
+  },
+  {
+    "id": "WN19",
+    "name": "キャンティ ルフィナ リゼルバ【(赤)辛口】",
+    "imagePath": "/images/WN19.png"
+  }
+]

@@ -21,7 +21,7 @@ const PlayingPage = (props: PlayingPageProps) => {
     <div>
       <p>{currentMealIndex + 1} / 10</p>
       <img
-        src={selectedMeals[currentMealIndex]?.path}
+        src={selectedMeals[currentMealIndex]?.imagePath}
         width="300"
         alt={selectedMeals[currentMealIndex]?.name}
       />

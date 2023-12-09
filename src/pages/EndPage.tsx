@@ -28,7 +28,7 @@ const EndPage = (props: EndPageProps) => {
           <ul>
             {correctAnswers.map((item) => (
               <li key={item.id}>
-                <img src={item.path} alt={`ID: ${item.id}`} width="100" />
+                <img src={item.imagePath} alt={`ID: ${item.id}`} width="100" />
                 <p>{item.name}</p>
                 <p>{item.id}</p>
               </li>
@@ -41,7 +41,7 @@ const EndPage = (props: EndPageProps) => {
           <ul>
             {incorrectAnswers.map((item) => (
               <li key={item.id}>
-                <img src={item.path} alt={`ID: ${item.id}`} width="100" />
+                <img src={item.imagePath} alt={`ID: ${item.id}`} width="100" />
                 <p>{item.name}</p>
                 <p>{item.id}</p>
               </li>
