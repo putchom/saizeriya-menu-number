@@ -13,7 +13,7 @@ const EndPage = (props: EndPageProps) => {
 
   const tweetScore = () => {
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      `サイゼのメニュー番号を ${score} 個当てました！ #サイゼのメニュー番号を当てろ`,
+      `サイゼのメニュー番号を ${score} 個当てました！ #サイゼのメニュー番号`,
     )}`;
     window.open(tweetUrl, "_blank");
   };

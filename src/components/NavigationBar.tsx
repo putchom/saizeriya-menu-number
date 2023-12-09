@@ -1,7 +1,7 @@
 const NavigationBar = () => {
   return (
     <div>
-      <h1>サイゼのメニュー番号を当てろ</h1>
+      <h1>サイゼのメニュー番号</h1>
       <nav>
         <ul>
           <li>
