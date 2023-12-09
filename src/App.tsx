@@ -551,7 +551,7 @@ const App = () => {
     if (currentImageIndex === selectedImages.length - 1) {
       setGameStatus(GameStatus.END);
       setTweetText(
-        `サイゼリヤのメニュー番号を ${score} 個当てました！ #サイゼリヤの注文番号を当てろ！`,
+        `サイゼのメニュー番号を ${score} 個当てました！ #サイゼの注文番号を当てろ！`,
       );
     }
 
@@ -574,7 +574,7 @@ const App = () => {
   return (
     <div>
       <div>
-        <h1>サイゼリヤの注文番号を当てろ！</h1>
+        <h1>サイゼの注文番号を当てろ！</h1>
         <nav>
           <ul>
             <li>
@@ -601,7 +601,7 @@ const App = () => {
       {gameStatus === GameStatus.START && (
         <div>
           <p>
-            サイゼリヤの料理を見て！
+            サイゼの料理の！
             <br />
             メニュー番号を！
             <br />
