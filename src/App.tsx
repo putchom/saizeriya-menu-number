@@ -13,6 +13,8 @@ enum GameStatus {
   END = 2,
 }
 
+const NUMBER_OF_QUESTIONS = 10;
+
 const App = () => {
   const [selectedMeals, setSelectedMeals] = useState<Meal[]>([]);
   const [currentMealIndex, setCurrentMealIndex] = useState<number>(0);
@@ -22,9 +24,9 @@ const App = () => {
   const [correctAnswers, setCorrectAnswers] = useState<Meal[]>([]);
   const [incorrectAnswers, setIncorrectAnswers] = useState<Meal[]>([]);
 
-  const selectRandomMeals = () => {
+  const selectRandomMeals = (quantity: number) => {
     const selected: Meal[] = [];
-    while (selected.length < 10) {
+    while (selected.length < quantity) {
       const randomIndex = Math.floor(Math.random() * meals.length);
       const meal = meals[randomIndex];
       if (!selected.some((item) => item.id === meal.id)) {
@@ -35,7 +37,7 @@ const App = () => {
   };
 
   const startGame = () => {
-    setSelectedMeals(selectRandomMeals());
+    setSelectedMeals(selectRandomMeals(NUMBER_OF_QUESTIONS));
     setGameStatus(GameStatus.PLAYING);
     setCurrentMealIndex(0);
     setScore(0);
@@ -70,6 +72,7 @@ const App = () => {
       {gameStatus === GameStatus.START && <StartPage startGame={startGame} />}
       {gameStatus === GameStatus.PLAYING && (
         <PlayingPage
+          numberOfQuestions={NUMBER_OF_QUESTIONS}
           currentMealIndex={currentMealIndex}
           selectedMeals={selectedMeals}
           userInput={userInput}

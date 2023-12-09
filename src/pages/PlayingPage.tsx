@@ -1,6 +1,7 @@
 import { Meal } from "../types";
 
 type PlayingPageProps = {
+  numberOfQuestions: number;
   currentMealIndex: number;
   selectedMeals: Meal[];
   userInput: string;
@@ -10,6 +11,7 @@ type PlayingPageProps = {
 
 const PlayingPage = (props: PlayingPageProps) => {
   const {
+    numberOfQuestions,
     currentMealIndex,
     selectedMeals,
     userInput,
@@ -19,7 +21,9 @@ const PlayingPage = (props: PlayingPageProps) => {
 
   return (
     <div>
-      <p>{currentMealIndex + 1} / 10</p>
+      <p>
+        {currentMealIndex + 1} / {numberOfQuestions}
+      </p>
       <img
         src={selectedMeals[currentMealIndex]?.imagePath}
         width="300"
