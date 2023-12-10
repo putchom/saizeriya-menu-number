@@ -18,7 +18,6 @@ const NUMBER_OF_QUESTIONS = 10;
 const App = () => {
   const [selectedMeals, setSelectedMeals] = useState<Meal[]>([]);
   const [currentMealIndex, setCurrentMealIndex] = useState<number>(0);
-  const [score, setScore] = useState<number>(0);
   const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.START);
   const [userInput, setUserInput] = useState<string>("");
   const [correctAnswers, setCorrectAnswers] = useState<Meal[]>([]);
@@ -40,13 +39,11 @@ const App = () => {
     setSelectedMeals(selectRandomMeals(NUMBER_OF_QUESTIONS));
     setGameStatus(GameStatus.PLAYING);
     setCurrentMealIndex(0);
-    setScore(0);
   };
 
   const checkAnswer = () => {
     const currentMeal = selectedMeals[currentMealIndex];
     if (currentMeal && userInput === currentMeal.id) {
-      setScore(score + 1);
       setCorrectAnswers([...correctAnswers, currentMeal]);
     } else {
       setIncorrectAnswers([...incorrectAnswers, currentMeal]);
@@ -82,7 +79,6 @@ const App = () => {
       )}
       {gameStatus === GameStatus.END && (
         <EndPage
-          score={score}
           restartGame={restartGame}
           correctAnswers={correctAnswers}
           incorrectAnswers={incorrectAnswers}

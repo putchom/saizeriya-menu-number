@@ -2,25 +2,24 @@ import AnswerListItem from "../components/AnswerListItem";
 import { Meal } from "../types";
 
 type EndPageProps = {
-  score: number;
   restartGame: () => void;
   correctAnswers: Meal[];
   incorrectAnswers: Meal[];
 };
 
 const EndPage = (props: EndPageProps) => {
-  const { score, restartGame, correctAnswers, incorrectAnswers } = props;
+  const { restartGame, correctAnswers, incorrectAnswers } = props;
 
   const tweetScore = () => {
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      `サイゼのメニュー番号を ${score} 個当てました！ #サイゼのメニュー番号`,
+      `サイゼのメニュー番号を ${correctAnswers.length} 個当てました！ #サイゼのメニュー番号`,
     )}`;
     window.open(tweetUrl, "_blank");
   };
 
   return (
     <div>
-      <p>結果: {score}個正解</p>
+      <p>結果: {correctAnswers.length}個正解</p>
       <button type="button" onClick={tweetScore}>
         結果をツイート
       </button>
