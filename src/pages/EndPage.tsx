@@ -3,12 +3,15 @@ import meals from "../data/meals.json";
 import { AnswerListItem } from "../components/AnswerListItem";
 import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { correctAnswersState } from "../states/correctAnswersState";
+import {
+  GameStatus,
+  correctAnswersState,
+  currentMealIndexState,
+  gameStatusState,
+  incorrectAnswersState,
+  selectedMealsState,
+} from "../states";
 import { selectRandomMeals } from "../utils/selectRandomMeals";
-import { selectedMealsState } from "../states/selectedMealsState";
-import { GameStatus, gameStatusState } from "../states/gameStatusState";
-import { currentMealIndexState } from "../states/currentMealIndexState";
-import { incorrectAnswersState } from "../states/incorrectAnswersState";
 
 export const EndPage: React.FC = () => {
   const [correctAnswers, setCorrectAnswers] =

@@ -1,10 +1,13 @@
 import React from "react";
 import meals from "../data/meals.json";
-import { useSetRecoilState } from "recoil";
-import { selectedMealsState } from "../states/selectedMealsState";
-import { currentMealIndexState } from "../states/currentMealIndexState";
-import { GameStatus, gameStatusState } from "../states/gameStatusState";
 import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
+import { useSetRecoilState } from "recoil";
+import {
+  GameStatus,
+  currentMealIndexState,
+  gameStatusState,
+  selectedMealsState,
+} from "../states";
 import { selectRandomMeals } from "../utils/selectRandomMeals";
 
 export const StartPage: React.FC = () => {

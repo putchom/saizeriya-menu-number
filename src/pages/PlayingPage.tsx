@@ -1,12 +1,15 @@
 import React from "react";
 import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { selectedMealsState } from "../states/selectedMealsState";
-import { currentMealIndexState } from "../states/currentMealIndexState";
-import { userInputState } from "../states/userInputState";
-import { correctAnswersState } from "../states/correctAnswersState";
-import { incorrectAnswersState } from "../states/incorrectAnswersState";
-import { GameStatus, gameStatusState } from "../states/gameStatusState";
+import {
+  GameStatus,
+  correctAnswersState,
+  currentMealIndexState,
+  gameStatusState,
+  incorrectAnswersState,
+  selectedMealsState,
+  userInputState,
+} from "../states";
 
 export const PlayingPage: React.FC = () => {
   const selectedMeals = useRecoilValue(selectedMealsState);

@@ -4,7 +4,7 @@ import { PlayingPage } from "./pages/PlayingPage";
 import { EndPage } from "./pages/EndPage";
 import { NavigationBar } from "./components/NavigationBar";
 import { useRecoilValue } from "recoil";
-import { GameStatus, gameStatusState } from "./states/gameStatusState";
+import { GameStatus, gameStatusState } from "./states";
 
 const App = () => {
   const gameStatus = useRecoilValue(gameStatusState);
