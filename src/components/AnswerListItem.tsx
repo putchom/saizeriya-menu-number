@@ -4,7 +4,7 @@ type AnswerListItemProps = {
   meal: Meal;
 };
 
-const AnswerListItem = (props: AnswerListItemProps) => {
+export const AnswerListItem: React.FC<AnswerListItemProps> = (props) => {
   const { meal } = props;
 
   return (
@@ -15,5 +15,3 @@ const AnswerListItem = (props: AnswerListItemProps) => {
     </li>
   );
 };
-
-export default AnswerListItem;

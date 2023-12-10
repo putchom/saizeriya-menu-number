@@ -1,4 +1,6 @@
-const NavigationBar = () => {
+import React from "react";
+
+export const NavigationBar: React.FC = () => {
   return (
     <div>
       <h1>サイゼのメニュー番号</h1>
@@ -27,5 +29,3 @@ const NavigationBar = () => {
     </div>
   );
 };
-
-export default NavigationBar;

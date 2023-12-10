@@ -1,3 +1,4 @@
+import React from "react";
 import { Meal } from "../types";
 
 type PlayingPageProps = {
@@ -9,7 +10,7 @@ type PlayingPageProps = {
   checkAnswer: () => void;
 };
 
-const PlayingPage = (props: PlayingPageProps) => {
+export const PlayingPage: React.FC<PlayingPageProps> = (props) => {
   const {
     numberOfQuestions,
     currentMealIndex,
@@ -46,5 +47,3 @@ const PlayingPage = (props: PlayingPageProps) => {
     </div>
   );
 };
-
-export default PlayingPage;

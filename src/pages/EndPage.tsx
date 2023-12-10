@@ -1,4 +1,5 @@
-import AnswerListItem from "../components/AnswerListItem";
+import React from "react";
+import { AnswerListItem } from "../components/AnswerListItem";
 import { Meal } from "../types";
 
 type EndPageProps = {
@@ -8,7 +9,7 @@ type EndPageProps = {
   incorrectAnswers: Meal[];
 };
 
-const EndPage = (props: EndPageProps) => {
+export const EndPage: React.FC<EndPageProps> = (props) => {
   const { restartGame, correctAnswers, incorrectAnswers, numberOfQuestions } =
     props;
 
@@ -53,5 +54,3 @@ const EndPage = (props: EndPageProps) => {
     </div>
   );
 };
-
-export default EndPage;

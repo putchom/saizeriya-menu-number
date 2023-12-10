@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
-import StartPage from "./pages/StartPage";
 import { Meal } from "./types";
-import PlayingPage from "./pages/PlayingPage";
-import EndPage from "./pages/EndPage";
-import NavigationBar from "./components/NavigationBar";
+import { StartPage } from "./pages/StartPage";
+import { PlayingPage } from "./pages/PlayingPage";
+import { EndPage } from "./pages/EndPage";
+import { NavigationBar } from "./components/NavigationBar";
 import meals from "./data/meals.json";
 
 enum GameStatus {

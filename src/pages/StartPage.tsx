@@ -1,8 +1,10 @@
+import React from "react";
+
 type StartPageProps = {
   startGame: () => void;
 };
 
-const StartPage = (props: StartPageProps) => {
+export const StartPage: React.FC<StartPageProps> = (props) => {
   const { startGame } = props;
 
   return (
@@ -20,5 +22,3 @@ const StartPage = (props: StartPageProps) => {
     </div>
   );
 };
-
-export default StartPage;
