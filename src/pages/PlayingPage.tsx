@@ -86,6 +86,114 @@ if (import.meta.vitest) {
       cleanup();
     });
 
+    test("現在の問題番号が表示される", async () => {
+      const mockedCurrentMealIndexState = 0;
+      const mockedSelectedMealsState = [
+        {
+          id: "1",
+          name: "カルボナーラ",
+          imagePath: "/",
+        },
+      ];
+
+      const { findByText } = render(
+        <RecoilRoot
+          initializeState={(snapshot) => {
+            snapshot.set(currentMealIndexState, mockedCurrentMealIndexState);
+            snapshot.set(selectedMealsState, mockedSelectedMealsState);
+          }}
+        >
+          <PlayingPage />
+        </RecoilRoot>,
+      );
+
+      expect(await findByText("1 / 10")).toBeInTheDocument();
+    });
+
+    test("現在の問題の画像が表示される", async () => {
+      const mockedCurrentMealIndexState = 0;
+      const mockedSelectedMealsState = [
+        {
+          id: "1",
+          name: "カルボナーラ",
+          imagePath: "/",
+        },
+      ];
+
+      const { findByAltText } = render(
+        <RecoilRoot
+          initializeState={(snapshot) => {
+            snapshot.set(currentMealIndexState, mockedCurrentMealIndexState);
+            snapshot.set(selectedMealsState, mockedSelectedMealsState);
+          }}
+        >
+          <PlayingPage />
+        </RecoilRoot>,
+      );
+
+      expect(await findByAltText("カルボナーラ")).toBeInTheDocument();
+    });
+
+    test("現在の問題の名前が表示される", async () => {
+      const mockedCurrentMealIndexState = 0;
+      const mockedSelectedMealsState = [
+        {
+          id: "1",
+          name: "カルボナーラ",
+          imagePath: "/",
+        },
+      ];
+
+      const { findByText } = render(
+        <RecoilRoot
+          initializeState={(snapshot) => {
+            snapshot.set(currentMealIndexState, mockedCurrentMealIndexState);
+            snapshot.set(selectedMealsState, mockedSelectedMealsState);
+          }}
+        >
+          <PlayingPage />
+        </RecoilRoot>,
+      );
+
+      expect(await findByText("カルボナーラ")).toBeInTheDocument();
+    });
+
+    describe("回答欄に文字を入力したとき", () => {
+      test("userInputが更新される", async () => {
+        const onChange = vi.fn();
+        const mockedCurrentMealIndexState = 0;
+        const mockedSelectedMealsState = [
+          {
+            id: "1",
+            name: "カルボナーラ",
+            imagePath: "/",
+          },
+        ];
+        const mockedUserInputState = "";
+
+        const { findByLabelText } = render(
+          <RecoilRoot
+            initializeState={(snapshot) => {
+              snapshot.set(currentMealIndexState, mockedCurrentMealIndexState);
+              snapshot.set(selectedMealsState, mockedSelectedMealsState);
+              snapshot.set(userInputState, mockedUserInputState);
+            }}
+          >
+            <RecoilObserver node={userInputState} onChange={onChange} />
+            <PlayingPage />
+          </RecoilRoot>,
+        );
+
+        fireEvent.change(await findByLabelText("メニュー番号"), {
+          target: { value: "2" },
+        });
+
+        expect(onChange).toHaveBeenCalledTimes(2);
+        expect(onChange).toHaveBeenCalledWith(mockedUserInputState);
+        expect(onChange).toHaveBeenCalledWith("2");
+      });
+    });
+
     describe("回答ボタンを押したとき", () => {
       describe("正解のとき", () => {
         test("正解のリストに追加される", async () => {
