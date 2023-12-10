@@ -22,12 +22,16 @@ const App = () => {
 export default App;
 
 if (import.meta.vitest) {
-  const { describe, test, expect } = import.meta.vitest;
+  const { afterEach, describe, test, expect } = import.meta.vitest;
   const { RecoilRoot } = await import("recoil");
-  const { render } = await import("@testing-library/react");
+  const { cleanup, render } = await import("@testing-library/react");
   const { gameStatusState } = await import("./states");
 
   describe("App", () => {
+    afterEach(() => {
+      cleanup();
+    });
+
     test("gameStatusがSTARTのときStartPageが描画される", async () => {
       const mockedState = GameStatus.START;
       const { findByText } = render(
