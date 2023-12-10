@@ -1,27 +1,18 @@
 import React from "react";
-import meals from "../data/meals.json";
 import { AnswerListItem } from "../components/AnswerListItem";
 import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   GameStatus,
   correctAnswersState,
-  currentMealIndexState,
   gameStatusState,
   incorrectAnswersState,
-  selectedMealsState,
 } from "../states";
-import { selectRandomMeals } from "../utils/selectRandomMeals";
 
 export const EndPage: React.FC = () => {
-  const [correctAnswers, setCorrectAnswers] =
-    useRecoilState(correctAnswersState);
-  const [incorrectAnswers, setIncorrectAnswers] = useRecoilState(
-    incorrectAnswersState,
-  );
-  const setSelectedMeals = useSetRecoilState(selectedMealsState);
+  const correctAnswers = useRecoilValue(correctAnswersState);
+  const incorrectAnswers = useRecoilValue(incorrectAnswersState);
   const setGameStatus = useSetRecoilState(gameStatusState);
-  const setCurrentMealIndex = useSetRecoilState(currentMealIndexState);
 
   const tweetScore = () => {
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
@@ -30,14 +21,8 @@ export const EndPage: React.FC = () => {
     window.open(tweetUrl, "_blank");
   };
 
-  const restartGame = () => {
-    setSelectedMeals(
-      selectRandomMeals({ meals: meals, quantity: NUMBER_OF_QUESTIONS }),
-    );
-    setGameStatus(GameStatus.PLAYING);
-    setCurrentMealIndex(0);
-    setCorrectAnswers([]);
-    setIncorrectAnswers([]);
+  const backToTop = () => {
+    setGameStatus(GameStatus.START);
   };
 
   return (
@@ -46,8 +31,8 @@ export const EndPage: React.FC = () => {
       <button type="button" onClick={tweetScore}>
         結果をツイート
       </button>
-      <button type="button" onClick={restartGame}>
-        もう一度プレイ
+      <button type="button" onClick={backToTop}>
+        トップに戻る
       </button>
       <div>
         <h2>正解</h2>
