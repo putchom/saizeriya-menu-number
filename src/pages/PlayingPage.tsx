@@ -23,15 +23,22 @@ export const PlayingPage: React.FC = () => {
     incorrectAnswersState,
   );
   const setGameStatus = useSetRecoilState(gameStatusState);
+  const [showResult, setShowResult] = React.useState(false);
+  const currentMeal = selectedMeals[currentMealIndex];
+  const isCorrect = currentMeal && userInput === currentMeal.id;
 
   const checkAnswer = () => {
-    const currentMeal = selectedMeals[currentMealIndex];
-
-    if (currentMeal && userInput === currentMeal.id) {
+    if (isCorrect) {
       setCorrectAnswers([...correctAnswers, currentMeal]);
     } else {
       setIncorrectAnswers([...incorrectAnswers, currentMeal]);
     }
+
+    setShowResult(true);
+  };
+
+  const nextQuestion = () => {
+    setShowResult(false);
 
     if (currentMealIndex === selectedMeals.length - 1) {
       setGameStatus(GameStatus.END);
@@ -60,11 +67,24 @@ export const PlayingPage: React.FC = () => {
           onChange={(e) => setUserInput(e.target.value)}
           placeholder="(例) AA01"
           required
+          disabled={showResult}
         />
-        <button type="button" onClick={checkAnswer}>
+        <button type="button" onClick={checkAnswer} disabled={showResult}>
           回答
         </button>{" "}
       </label>
+      {showResult && (
+        <div>
+          {isCorrect ? (
+            <p>大正解！すごいじゃん！</p>
+          ) : (
+            <p>残念！正解は{currentMeal.id}でした！</p>
+          )}
+          <button type="button" onClick={nextQuestion}>
+            次の問題へ
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -227,6 +247,29 @@ if (import.meta.vitest) {
           expect(onChange).toHaveBeenCalledWith([]);
           expect(onChange).toHaveBeenCalledWith(mockedSelectedMealsState);
         });
+
+        test("正解の結果が表示される", async () => {
+          const { getByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(selectedMealsState, [
+                  {
+                    id: "1",
+                    name: "カルボナーラ",
+                    imagePath: "/",
+                  },
+                ]);
+                snapshot.set(userInputState, "1");
+              }}
+            >
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(getByText("回答"));
+
+          expect(getByText("大正解！すごいじゃん！")).toBeInTheDocument();
+        });
       });
 
       describe("不正解のとき", () => {
@@ -264,8 +307,33 @@ if (import.meta.vitest) {
           expect(onChange).toHaveBeenCalledWith([]);
           expect(onChange).toHaveBeenCalledWith(mockedSelectedMealsState);
         });
-      });
 
+        test("不正解の結果と正解のメニュー番号が表示される", async () => {
+          const { getByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(selectedMealsState, [
+                  {
+                    id: "1",
+                    name: "カルボナーラ",
+                    imagePath: "/",
+                  },
+                ]);
+                snapshot.set(userInputState, "2");
+              }}
+            >
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(getByText("回答"));
+
+          expect(getByText("残念！正解は1でした！")).toBeInTheDocument();
+        });
+      });
+    });
+
+    describe("次の問題へボタンを押したとき", () => {
       describe("最後の問題のとき", () => {
         test("終了画面になる", async () => {
           const onChange = vi.fn();
@@ -293,6 +361,7 @@ if (import.meta.vitest) {
           );
 
           fireEvent.click(await findByText("回答"));
+          fireEvent.click(await findByText("次の問題へ"));
 
           expect(onChange).toHaveBeenCalledTimes(2);
           expect(onChange).toHaveBeenCalledWith(GameStatus.PLAYING);
@@ -331,6 +400,7 @@ if (import.meta.vitest) {
           );
 
           fireEvent.click(await findByText("回答"));
+          fireEvent.click(await findByText("次の問題へ"));
 
           expect(onChange).toHaveBeenCalledTimes(2);
           expect(onChange).toHaveBeenCalledWith(mockedUserInputState);
@@ -370,6 +440,7 @@ if (import.meta.vitest) {
           );
 
           fireEvent.click(await findByText("回答"));
+          fireEvent.click(await findByText("次の問題へ"));
 
           expect(onChange).toHaveBeenCalledTimes(2);
           expect(onChange).toHaveBeenCalledWith(0);
