@@ -1,29 +1,46 @@
 import React from "react";
-import { Meal } from "../types";
+import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { selectedMealsState } from "../states/selectedMealsState";
+import { currentMealIndexState } from "../states/currentMealIndexState";
+import { userInputState } from "../states/userInputState";
+import { correctAnswersState } from "../states/correctAnswersState";
+import { incorrectAnswersState } from "../states/incorrectAnswersState";
+import { GameStatus, gameStatusState } from "../states/gameStatusState";
 
-type PlayingPageProps = {
-  numberOfQuestions: number;
-  currentMealIndex: number;
-  selectedMeals: Meal[];
-  userInput: string;
-  setUserInput: (input: string) => void;
-  checkAnswer: () => void;
-};
+export const PlayingPage: React.FC = () => {
+  const selectedMeals = useRecoilValue(selectedMealsState);
+  const [currentMealIndex, setCurrentMealIndex] = useRecoilState(
+    currentMealIndexState,
+  );
+  const [userInput, setUserInput] = useRecoilState(userInputState);
+  const [correctAnswers, setCorrectAnswers] =
+    useRecoilState(correctAnswersState);
+  const [incorrectAnswers, setIncorrectAnswers] = useRecoilState(
+    incorrectAnswersState,
+  );
+  const setGameStatus = useSetRecoilState(gameStatusState);
 
-export const PlayingPage: React.FC<PlayingPageProps> = (props) => {
-  const {
-    numberOfQuestions,
-    currentMealIndex,
-    selectedMeals,
-    userInput,
-    setUserInput,
-    checkAnswer,
-  } = props;
+  const checkAnswer = () => {
+    const currentMeal = selectedMeals[currentMealIndex];
+    if (currentMeal && userInput === currentMeal.id) {
+      setCorrectAnswers([...correctAnswers, currentMeal]);
+    } else {
+      setIncorrectAnswers([...incorrectAnswers, currentMeal]);
+    }
+    setCurrentMealIndex(currentMealIndex + 1);
+
+    if (currentMealIndex === selectedMeals.length - 1) {
+      setGameStatus(GameStatus.END);
+    }
+
+    setUserInput("");
+  };
 
   return (
     <div>
       <p>
-        {currentMealIndex + 1} / {numberOfQuestions}
+        {currentMealIndex + 1} / {NUMBER_OF_QUESTIONS}
       </p>
       <img
         src={selectedMeals[currentMealIndex]?.imagePath}

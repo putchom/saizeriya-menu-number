@@ -1,23 +1,40 @@
 import React from "react";
+import meals from "../data/meals.json";
 import { AnswerListItem } from "../components/AnswerListItem";
-import { Meal } from "../types";
+import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { correctAnswersState } from "../states/correctAnswersState";
+import { selectRandomMeals } from "../utils/selectRandomMeals";
+import { selectedMealsState } from "../states/selectedMealsState";
+import { GameStatus, gameStatusState } from "../states/gameStatusState";
+import { currentMealIndexState } from "../states/currentMealIndexState";
+import { incorrectAnswersState } from "../states/incorrectAnswersState";
 
-type EndPageProps = {
-  numberOfQuestions: number;
-  restartGame: () => void;
-  correctAnswers: Meal[];
-  incorrectAnswers: Meal[];
-};
-
-export const EndPage: React.FC<EndPageProps> = (props) => {
-  const { restartGame, correctAnswers, incorrectAnswers, numberOfQuestions } =
-    props;
+export const EndPage: React.FC = () => {
+  const [correctAnswers, setCorrectAnswers] =
+    useRecoilState(correctAnswersState);
+  const [incorrectAnswers, setIncorrectAnswers] = useRecoilState(
+    incorrectAnswersState,
+  );
+  const setSelectedMeals = useSetRecoilState(selectedMealsState);
+  const setGameStatus = useSetRecoilState(gameStatusState);
+  const setCurrentMealIndex = useSetRecoilState(currentMealIndexState);
 
   const tweetScore = () => {
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      `サイゼのメニュー番号を ${numberOfQuestions}問中 ${correctAnswers.length} 問当てました！ #サイゼのメニュー番号`,
+      `サイゼのメニュー番号を ${NUMBER_OF_QUESTIONS}問中 ${correctAnswers.length} 問当てました！ #サイゼのメニュー番号`,
     )}`;
     window.open(tweetUrl, "_blank");
+  };
+
+  const restartGame = () => {
+    setSelectedMeals(
+      selectRandomMeals({ meals: meals, quantity: NUMBER_OF_QUESTIONS }),
+    );
+    setGameStatus(GameStatus.PLAYING);
+    setCurrentMealIndex(0);
+    setCorrectAnswers([]);
+    setIncorrectAnswers([]);
   };
 
   return (
