@@ -9,6 +9,8 @@ export default defineConfig({
     "import.meta.vitest": false,
   },
   test: {
-    includeSource: ["src/**/*.{js,ts}"],
+    includeSource: ["src/**/*.{ts,tsx}"],
+    environment: "jsdom",
+    setupFiles: "src/tests/setup.ts",
   },
 });
