@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector, snapshot_UNSTABLE } from "recoil";
 import { Meal } from "../types";
 
 export enum GameStatus {
@@ -36,3 +36,31 @@ export const userInputState = atom<string>({
   key: "userInputState",
   default: "",
 });
+
+export const formattedUserInputState = selector<string>({
+  key: "formattedUserInputState",
+  get: ({ get }) => {
+    const userInput = get(userInputState);
+    return userInput.toUpperCase().trim();
+  },
+});
+
+if (import.meta.vitest) {
+  const { describe, expect, test } = import.meta.vitest;
+
+  describe("formattedUserInputState", () => {
+    test("大文字に変換される", () => {
+      const initialSnapshot = snapshot_UNSTABLE();
+      expect(
+        initialSnapshot.getLoadable(formattedUserInputState).valueOrThrow(),
+      ).toBe("");
+
+      const testSnapshot = snapshot_UNSTABLE(({ set }) =>
+        set(userInputState, "a"),
+      );
+      expect(
+        testSnapshot.getLoadable(formattedUserInputState).valueOrThrow(),
+      ).toBe("A");
+    });
+  });
+}

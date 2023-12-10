@@ -5,6 +5,7 @@ import {
   GameStatus,
   correctAnswersState,
   currentMealIndexState,
+  formattedUserInputState,
   gameStatusState,
   incorrectAnswersState,
   selectedMealsState,
@@ -17,6 +18,7 @@ export const PlayingPage: React.FC = () => {
     currentMealIndexState,
   );
   const [userInput, setUserInput] = useRecoilState(userInputState);
+  const formattedUserInput = useRecoilValue(formattedUserInputState);
   const [correctAnswers, setCorrectAnswers] =
     useRecoilState(correctAnswersState);
   const [incorrectAnswers, setIncorrectAnswers] = useRecoilState(
@@ -25,7 +27,7 @@ export const PlayingPage: React.FC = () => {
   const setGameStatus = useSetRecoilState(gameStatusState);
   const [showResult, setShowResult] = React.useState(false);
   const currentMeal = selectedMeals[currentMealIndex];
-  const isCorrect = currentMeal && userInput === currentMeal.id;
+  const isCorrect = currentMeal && formattedUserInput === currentMeal.id;
 
   const checkAnswer = () => {
     if (isCorrect) {
