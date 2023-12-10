@@ -26,18 +26,19 @@ export const PlayingPage: React.FC = () => {
 
   const checkAnswer = () => {
     const currentMeal = selectedMeals[currentMealIndex];
+
     if (currentMeal && userInput === currentMeal.id) {
       setCorrectAnswers([...correctAnswers, currentMeal]);
     } else {
       setIncorrectAnswers([...incorrectAnswers, currentMeal]);
     }
-    setCurrentMealIndex(currentMealIndex + 1);
 
     if (currentMealIndex === selectedMeals.length - 1) {
       setGameStatus(GameStatus.END);
+    } else {
+      setUserInput("");
+      setCurrentMealIndex(currentMealIndex + 1);
     }
-
-    setUserInput("");
   };
 
   return (
@@ -67,3 +68,206 @@ export const PlayingPage: React.FC = () => {
     </div>
   );
 };
+
+if (import.meta.vitest) {
+  const { afterEach, describe, test, expect, vi } = import.meta.vitest;
+  const { RecoilRoot } = await import("recoil");
+  const { cleanup, render, fireEvent } = await import("@testing-library/react");
+  const {
+    correctAnswersState,
+    currentMealIndexState,
+    selectedMealsState,
+    userInputState,
+  } = await import("../states");
+  const { RecoilObserver } = await import("../utils/RecoilObserver");
+
+  describe("PlayingPage", () => {
+    afterEach(() => {
+      cleanup();
+    });
+
+    describe("回答ボタンを押したとき", () => {
+      describe("正解のとき", () => {
+        test("正解のリストに追加される", async () => {
+          const onChange = vi.fn();
+          const mockedSelectedMealsState = [
+            {
+              id: "1",
+              name: "カルボナーラ",
+              imagePath: "/",
+            },
+          ];
+          const mockedUserInputState = "1";
+
+          const { findByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(currentMealIndexState, 0);
+                snapshot.set(selectedMealsState, mockedSelectedMealsState);
+                snapshot.set(correctAnswersState, []);
+                snapshot.set(userInputState, mockedUserInputState);
+              }}
+            >
+              <RecoilObserver node={correctAnswersState} onChange={onChange} />
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(await findByText("回答"));
+
+          expect(onChange).toHaveBeenCalledTimes(2);
+          expect(onChange).toHaveBeenCalledWith([]);
+          expect(onChange).toHaveBeenCalledWith(mockedSelectedMealsState);
+        });
+      });
+
+      describe("不正解のとき", () => {
+        test("不正解のリストに追加される", async () => {
+          const onChange = vi.fn();
+          const mockedSelectedMealsState = [
+            {
+              id: "1",
+              name: "カルボナーラ",
+              imagePath: "/",
+            },
+          ];
+          const mockedUserInputState = "2";
+
+          const { findByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(currentMealIndexState, 0);
+                snapshot.set(selectedMealsState, mockedSelectedMealsState);
+                snapshot.set(incorrectAnswersState, []);
+                snapshot.set(userInputState, mockedUserInputState);
+              }}
+            >
+              <RecoilObserver
+                node={incorrectAnswersState}
+                onChange={onChange}
+              />
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(await findByText("回答"));
+
+          expect(onChange).toHaveBeenCalledTimes(2);
+          expect(onChange).toHaveBeenCalledWith([]);
+          expect(onChange).toHaveBeenCalledWith(mockedSelectedMealsState);
+        });
+      });
+
+      describe("最後の問題のとき", () => {
+        test("終了画面になる", async () => {
+          const onChange = vi.fn();
+          const mockedSelectedMealsState = [
+            {
+              id: "1",
+              name: "カルボナーラ",
+              imagePath: "/",
+            },
+          ];
+          const mockedUserInputState = "1";
+
+          const { findByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(currentMealIndexState, 0);
+                snapshot.set(selectedMealsState, mockedSelectedMealsState);
+                snapshot.set(gameStatusState, GameStatus.PLAYING);
+                snapshot.set(userInputState, mockedUserInputState);
+              }}
+            >
+              <RecoilObserver node={gameStatusState} onChange={onChange} />
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(await findByText("回答"));
+
+          expect(onChange).toHaveBeenCalledTimes(2);
+          expect(onChange).toHaveBeenCalledWith(GameStatus.PLAYING);
+          expect(onChange).toHaveBeenCalledWith(GameStatus.END);
+        });
+      });
+
+      describe("最後の問題ではないとき", () => {
+        test("userInputが空になる", async () => {
+          const onChange = vi.fn();
+          const mockedSelectedMealsState = [
+            {
+              id: "1",
+              name: "カルボナーラ",
+              imagePath: "/",
+            },
+            {
+              id: "2",
+              name: "ミートソース",
+              imagePath: "/",
+            },
+          ];
+          const mockedUserInputState = "1";
+
+          const { findByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(currentMealIndexState, 0);
+                snapshot.set(selectedMealsState, mockedSelectedMealsState);
+                snapshot.set(userInputState, mockedUserInputState);
+              }}
+            >
+              <RecoilObserver node={userInputState} onChange={onChange} />
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(await findByText("回答"));
+
+          expect(onChange).toHaveBeenCalledTimes(2);
+          expect(onChange).toHaveBeenCalledWith(mockedUserInputState);
+          expect(onChange).toHaveBeenCalledWith("");
+        });
+
+        test("次の問題に進む", async () => {
+          const onChange = vi.fn();
+          const mockedSelectedMealsState = [
+            {
+              id: "1",
+              name: "カルボナーラ",
+              imagePath: "/",
+            },
+            {
+              id: "2",
+              name: "ミートソース",
+              imagePath: "/",
+            },
+          ];
+          const mockedUserInputState = "1";
+
+          const { findByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(currentMealIndexState, 0);
+                snapshot.set(selectedMealsState, mockedSelectedMealsState);
+                snapshot.set(userInputState, mockedUserInputState);
+              }}
+            >
+              <RecoilObserver
+                node={currentMealIndexState}
+                onChange={onChange}
+              />
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(await findByText("回答"));
+
+          expect(onChange).toHaveBeenCalledTimes(2);
+          expect(onChange).toHaveBeenCalledWith(0);
+          expect(onChange).toHaveBeenCalledWith(1);
+        });
+      });
+    });
+  });
+}
