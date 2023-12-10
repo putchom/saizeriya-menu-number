@@ -79,6 +79,7 @@ const App = () => {
       )}
       {gameStatus === GameStatus.END && (
         <EndPage
+          numberOfQuestions={NUMBER_OF_QUESTIONS}
           restartGame={restartGame}
           correctAnswers={correctAnswers}
           incorrectAnswers={incorrectAnswers}

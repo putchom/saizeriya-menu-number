@@ -8,9 +8,9 @@ const StartPage = (props: StartPageProps) => {
   return (
     <div>
       <p>
-        サイゼの料理の！
+        サイゼの料理の
         <br />
-        メニュー番号を！
+        メニュー番号を
         <br />
         当てまくれ！
       </p>

@@ -2,17 +2,19 @@ import AnswerListItem from "../components/AnswerListItem";
 import { Meal } from "../types";
 
 type EndPageProps = {
+  numberOfQuestions: number;
   restartGame: () => void;
   correctAnswers: Meal[];
   incorrectAnswers: Meal[];
 };
 
 const EndPage = (props: EndPageProps) => {
-  const { restartGame, correctAnswers, incorrectAnswers } = props;
+  const { restartGame, correctAnswers, incorrectAnswers, numberOfQuestions } =
+    props;
 
   const tweetScore = () => {
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      `サイゼのメニュー番号を ${correctAnswers.length} 個当てました！ #サイゼのメニュー番号`,
+      `サイゼのメニュー番号を ${numberOfQuestions}問中 ${correctAnswers.length} 問当てました！ #サイゼのメニュー番号`,
     )}`;
     window.open(tweetUrl, "_blank");
   };
