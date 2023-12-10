@@ -1,6 +1,6 @@
 import React from "react";
 import { AnswerListItem } from "../components/AnswerListItem";
-import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
+import { NUMBER_OF_QUESTIONS } from "../constants";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   GameStatus,

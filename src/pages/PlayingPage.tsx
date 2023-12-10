@@ -1,5 +1,5 @@
 import React from "react";
-import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
+import { NUMBER_OF_QUESTIONS } from "../constants";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   GameStatus,

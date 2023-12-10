@@ -1,6 +1,6 @@
 import React from "react";
 import meals from "../data/meals.json";
-import { NUMBER_OF_QUESTIONS } from "../constants/numberOfQuestions";
+import { NUMBER_OF_QUESTIONS } from "../constants";
 import { useSetRecoilState } from "recoil";
 import {
   GameStatus,
