@@ -8,7 +8,7 @@ export const NavigationBar: React.FC = () => {
         <ul>
           <li>
             <a
-              href="https://book.saizeriya.co.jp/library/menu1907/book/list"
+              href="https://book.saizeriya.co.jp/menu2310_j/book/#target/page_no=1"
               target="_blank"
               rel="noreferrer"
             >
