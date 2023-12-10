@@ -400,18 +400,13 @@
     "imagePath": "/images/SU05.png"
   },
   {
-    "id": "RP09",
-    "name": "たまねぎのズッパ",
-    "imagePath": "/images/RP09.png"
-  },
-  {
     "id": "SU07",
-    "name": "トッピング半熟卵",
+    "name": "たまねぎのズッパ",
     "imagePath": "/images/SU07.png"
   },
   {
     "id": "TP01",
-    "name": "野菜ペースト",
+    "name": "トッピング半熟卵",
     "imagePath": "/images/TP01.png"
   },
   {
