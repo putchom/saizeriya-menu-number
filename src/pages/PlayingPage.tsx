@@ -11,7 +11,14 @@ import {
   selectedMealsState,
   userInputState,
 } from "../states";
-import { AspectRatio, Button, Flex, Text, TextField } from "@radix-ui/themes";
+import {
+  AspectRatio,
+  Button,
+  Callout,
+  Flex,
+  Text,
+  TextField,
+} from "@radix-ui/themes";
 
 export const PlayingPage: React.FC = () => {
   const selectedMeals = useRecoilValue(selectedMealsState);
@@ -69,15 +76,19 @@ export const PlayingPage: React.FC = () => {
           }}
         />
       </AspectRatio>
-      <Text as="p" weight="bold" size="6">
+      <Text as="p" weight="bold" size="5">
         {selectedMeals[currentMealIndex]?.name}
       </Text>
       {showResult ? (
         <Flex direction="column" gap="2">
           {isCorrect ? (
-            <Text as="p">大正解！すごいじゃん！</Text>
+            <Callout.Root>
+              <Callout.Text>大正解！すごいじゃん！</Callout.Text>
+            </Callout.Root>
           ) : (
-            <Text as="p">残念！正解は{currentMeal.id}でした！</Text>
+            <Callout.Root color="tomato">
+              <Callout.Text>残念！正解は{currentMeal.id}でした！</Callout.Text>
+            </Callout.Root>
           )}
           <Button type="button" onClick={nextQuestion} size="3">
             次の問題へ

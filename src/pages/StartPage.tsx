@@ -47,7 +47,7 @@ export const StartPage: React.FC = () => {
           当てよう！
         </Text>
         <Button onClick={startGame} size="3">
-          プレイ
+          はじめる
         </Button>
       </Flex>
     </Box>
@@ -71,7 +71,7 @@ if (import.meta.vitest) {
       cleanup();
     });
 
-    describe("プレイボタンを押したとき", () => {
+    describe("はじめるボタンを押したとき", () => {
       test("データがリセットされる", async () => {
         vi.mock("../utils/selectRandomMeals", () => {
           return {
@@ -129,7 +129,7 @@ if (import.meta.vitest) {
           </RecoilRoot>,
         );
 
-        fireEvent.click(await findByText("プレイ"));
+        fireEvent.click(await findByText("はじめる"));
 
         expect(onChangeCorrectAnswersState).toHaveBeenCalledTimes(2);
         expect(onChangeCorrectAnswersState).toHaveBeenCalledWith(
@@ -177,7 +177,7 @@ if (import.meta.vitest) {
           </RecoilRoot>,
         );
 
-        fireEvent.click(await findByText("プレイ"));
+        fireEvent.click(await findByText("はじめる"));
 
         expect(onChange).toHaveBeenCalledTimes(2);
         expect(onChange).toHaveBeenCalledWith(GameStatus.START);

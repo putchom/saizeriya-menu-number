@@ -45,7 +45,7 @@ if (import.meta.vitest) {
           <App />
         </RecoilRoot>,
       );
-      expect(await findByText("プレイ")).not.toBeNull();
+      expect(await findByText("はじめる")).not.toBeNull();
     });
 
     test("gameStatusがPLAYINGのときPlayingPageが描画される", async () => {
