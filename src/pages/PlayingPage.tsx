@@ -11,6 +11,7 @@ import {
   selectedMealsState,
   userInputState,
 } from "../states";
+import { AspectRatio, Button, Flex, Text, TextField } from "@radix-ui/themes";
 
 export const PlayingPage: React.FC = () => {
   const selectedMeals = useRecoilValue(selectedMealsState);
@@ -51,43 +52,58 @@ export const PlayingPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <p>
+    <Flex direction="column" gap="5">
+      <Text as="p" align="center" weight="bold" size="5">
         {currentMealIndex + 1} / {NUMBER_OF_QUESTIONS}
-      </p>
-      <img
-        src={selectedMeals[currentMealIndex]?.imagePath}
-        width="300"
-        alt={selectedMeals[currentMealIndex]?.name}
-      />
-      <p>{selectedMeals[currentMealIndex]?.name}</p>
-      <label>
-        <div>メニュー番号</div>
-        <input
-          type="text"
-          value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
-          placeholder="(例) AA01"
-          required
-          disabled={showResult}
+      </Text>
+      <AspectRatio ratio={1 / 1}>
+        <img
+          src={selectedMeals[currentMealIndex]?.imagePath}
+          alt={selectedMeals[currentMealIndex]?.name}
+          style={{
+            objectFit: "contain",
+            width: "100%",
+            height: "100%",
+            borderRadius: "var(--radius-4)",
+            backgroundColor: "var(--accent-4)",
+          }}
         />
-        <button type="button" onClick={checkAnswer} disabled={showResult}>
-          回答
-        </button>{" "}
-      </label>
+      </AspectRatio>
+      <Text as="p" weight="bold" size="6">
+        {selectedMeals[currentMealIndex]?.name}
+      </Text>
+      <Flex direction="column" gap="1">
+        <Text as="label" htmlFor="user-input" weight="bold" size="2">
+          メニュー番号
+        </Text>
+        <TextField.Root>
+          <TextField.Input
+            id="user-input"
+            size="3"
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            required
+            disabled={showResult}
+          />
+        </TextField.Root>
+      </Flex>
+      <Button onClick={checkAnswer} disabled={showResult} size="3">
+        回答
+      </Button>
       {showResult && (
-        <div>
+        <Flex direction="column" gap="2">
           {isCorrect ? (
-            <p>大正解！すごいじゃん！</p>
+            <Text as="p">大正解！すごいじゃん！</Text>
           ) : (
-            <p>残念！正解は{currentMeal.id}でした！</p>
+            <Text as="p">残念！正解は{currentMeal.id}でした！</Text>
           )}
-          <button type="button" onClick={nextQuestion}>
+          <Button type="button" onClick={nextQuestion} size="3">
             次の問題へ
-          </button>
-        </div>
+          </Button>
+        </Flex>
       )}
-    </div>
+    </Flex>
   );
 };
 

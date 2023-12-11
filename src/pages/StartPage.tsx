@@ -11,7 +11,7 @@ import {
   selectedMealsState,
 } from "../states";
 import { selectRandomMeals } from "../utils/selectRandomMeals";
-import { Button, Flex, Text } from "@radix-ui/themes";
+import { Box, Button, Flex, Text } from "@radix-ui/themes";
 
 export const StartPage: React.FC = () => {
   const setCorrectAnswers = useSetRecoilState(correctAnswersState);
@@ -35,16 +35,20 @@ export const StartPage: React.FC = () => {
   };
 
   return (
-    <Flex direction="column" align="center" gap="4">
-      <Text align="center" size="6" weight="bold">
-        サイゼの料理の
-        <br />
-        メニュー番号を
-        <br />
-        当てよう！
-      </Text>
-      <Button onClick={startGame}>プレイ</Button>
-    </Flex>
+    <Box>
+      <Flex direction="column" gap="4">
+        <Text as="p" align="center" size="6" weight="bold">
+          サイゼの料理の
+          <br />
+          メニュー番号を
+          <br />
+          当てよう！
+        </Text>
+        <Button onClick={startGame} size="3">
+          プレイ
+        </Button>
+      </Flex>
+    </Box>
   );
 };
 

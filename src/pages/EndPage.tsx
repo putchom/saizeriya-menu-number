@@ -8,6 +8,7 @@ import {
   gameStatusState,
   incorrectAnswersState,
 } from "../states";
+import { Button, Flex, Heading, Text } from "@radix-ui/themes";
 
 export const EndPage: React.FC = () => {
   const correctAnswers = useRecoilValue(correctAnswersState);
@@ -26,43 +27,51 @@ export const EndPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <p>
+    <Flex direction="column" gap="6">
+      <Text as="p" weight="bold" size="6">
         結果: {NUMBER_OF_QUESTIONS}問中 {correctAnswers.length}問正解
-      </p>
-      <button type="button" onClick={tweetScore}>
-        結果をツイート
-      </button>
-      <button type="button" onClick={backToTop}>
-        トップに戻る
-      </button>
-      <div>
-        <div>
-          <h2>正解</h2>
-          {correctAnswers.length === 0 ? (
-            <p data-testid="correct-answers-empty-state">なし</p>
-          ) : (
-            <ul data-testid="corect-answers-list">
-              {correctAnswers.map((item) => (
-                <AnswerListItem key={item.id} meal={item} />
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>
-          <h2>不正解</h2>
-          {incorrectAnswers.length === 0 ? (
-            <p data-testid="incorrect-answers-empty-state">なし</p>
-          ) : (
-            <ul data-testid="incorect-answers-list">
-              {incorrectAnswers.map((item) => (
-                <AnswerListItem key={item.id} meal={item} />
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
-    </div>
+      </Text>
+      <Flex direction="column" gap="2">
+        <Button type="button" onClick={tweetScore} size="3">
+          結果をツイート
+        </Button>
+        <Button type="button" onClick={backToTop} size="3" variant="outline">
+          トップに戻る
+        </Button>
+      </Flex>
+      <Flex direction="column" gap="4">
+        <Heading as="h2" size="6">
+          正解
+        </Heading>
+        {correctAnswers.length === 0 ? (
+          <Text as="p" data-testid="correct-answers-empty-state" color="gray">
+            なし
+          </Text>
+        ) : (
+          <Flex direction="column" data-testid="corect-answers-list" gap="4">
+            {correctAnswers.map((item) => (
+              <AnswerListItem key={item.id} meal={item} />
+            ))}
+          </Flex>
+        )}
+      </Flex>
+      <Flex direction="column" gap="4">
+        <Heading as="h2" size="6">
+          不正解
+        </Heading>
+        {incorrectAnswers.length === 0 ? (
+          <Text as="p" data-testid="incorrect-answers-empty-state" color="gray">
+            なし
+          </Text>
+        ) : (
+          <Flex direction="column" data-testid="incorect-answers-list" gap="4">
+            {incorrectAnswers.map((item) => (
+              <AnswerListItem key={item.id} meal={item} />
+            ))}
+          </Flex>
+        )}
+      </Flex>
+    </Flex>
   );
 };
 
@@ -95,7 +104,7 @@ if (import.meta.vitest) {
         </RecoilRoot>,
       );
 
-      expect(await findByText("結果: 10問中 1問正解")).toBeInTheDocument();
+      expect(await findByText("結果: 6問中 1問正解")).toBeInTheDocument();
     });
 
     describe("結果をツイートボタンを押したとき", () => {
@@ -129,7 +138,7 @@ if (import.meta.vitest) {
         fireEvent.click(await findByText("結果をツイート"));
 
         expect(window.open).toHaveBeenCalledWith(
-          "https://twitter.com/intent/tweet?text=%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7%E3%82%92%2010%E5%95%8F%E4%B8%AD%200%20%E5%95%8F%E5%BD%93%E3%81%A6%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%20%23%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7",
+          "https://twitter.com/intent/tweet?text=%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7%E3%82%92%206%E5%95%8F%E4%B8%AD%200%20%E5%95%8F%E5%BD%93%E3%81%A6%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%20%23%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7",
           "_blank",
         );
       });

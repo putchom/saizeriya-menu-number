@@ -4,17 +4,20 @@ import { EndPage } from "./pages/EndPage";
 import { NavigationBar } from "./components/NavigationBar";
 import { useRecoilValue } from "recoil";
 import { GameStatus, gameStatusState } from "./states";
+import { Box, Container } from "@radix-ui/themes";
 
 const App = () => {
   const gameStatus = useRecoilValue(gameStatusState);
 
   return (
-    <div>
+    <Box>
       <NavigationBar />
-      {gameStatus === GameStatus.START && <StartPage />}
-      {gameStatus === GameStatus.PLAYING && <PlayingPage />}
-      {gameStatus === GameStatus.END && <EndPage />}
-    </div>
+      <Container size="1" pt="6" pr="4" pb="6" pl="4">
+        {gameStatus === GameStatus.START && <StartPage />}
+        {gameStatus === GameStatus.PLAYING && <PlayingPage />}
+        {gameStatus === GameStatus.END && <EndPage />}
+      </Container>
+    </Box>
   );
 };
 
