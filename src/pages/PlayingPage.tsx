@@ -91,7 +91,9 @@ export const PlayingPage: React.FC = () => {
             </Callout.Root>
           )}
           <Button type="button" onClick={nextQuestion} size="3">
-            次の問題へ
+            {currentMealIndex === selectedMeals.length - 1
+              ? "結果を見る"
+              : "次の問題へ"}
           </Button>
         </Flex>
       ) : (
@@ -280,6 +282,30 @@ if (import.meta.vitest) {
           expect(onChange).toHaveBeenCalledWith(mockedSelectedMealsState);
         });
 
+        test("解答欄と回答ボタンが表示されない", () => {
+          const { getByText, queryByLabelText, queryByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(selectedMealsState, [
+                  {
+                    id: "1",
+                    name: "カルボナーラ",
+                    imagePath: "/",
+                  },
+                ]);
+                snapshot.set(userInputState, "1");
+              }}
+            >
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(getByText("回答"));
+
+          expect(queryByLabelText("メニュー番号")).not.toBeInTheDocument();
+          expect(queryByText("回答")).not.toBeInTheDocument();
+        });
+
         test("正解の結果が表示される", async () => {
           const { getByText } = render(
             <RecoilRoot
@@ -363,9 +389,76 @@ if (import.meta.vitest) {
           expect(getByText("残念！正解は1でした！")).toBeInTheDocument();
         });
       });
+
+      describe("最後の問題のとき", () => {
+        test("nextQuestionボタンのラベルが結果を見るになる", async () => {
+          const mockedCurrentMealIndexState = 0;
+          const mockedSelectedMealsState = [
+            {
+              id: "1",
+              name: "カルボナーラ",
+              imagePath: "/",
+            },
+          ];
+
+          const { findByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(
+                  currentMealIndexState,
+                  mockedCurrentMealIndexState,
+                );
+                snapshot.set(selectedMealsState, mockedSelectedMealsState);
+              }}
+            >
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(await findByText("回答"));
+
+          expect(await findByText("結果を見る")).toBeInTheDocument();
+        });
+      });
+
+      describe("最後の問題ではないとき", () => {
+        test("nextQuestionボタンのラベルが次の問題へになる", async () => {
+          const mockedCurrentMealIndexState = 0;
+          const mockedSelectedMealsState = [
+            {
+              id: "1",
+              name: "カルボナーラ",
+              imagePath: "/",
+            },
+            {
+              id: "2",
+              name: "ミートソース",
+              imagePath: "/",
+            },
+          ];
+
+          const { findByText } = render(
+            <RecoilRoot
+              initializeState={(snapshot) => {
+                snapshot.set(
+                  currentMealIndexState,
+                  mockedCurrentMealIndexState,
+                );
+                snapshot.set(selectedMealsState, mockedSelectedMealsState);
+              }}
+            >
+              <PlayingPage />
+            </RecoilRoot>,
+          );
+
+          fireEvent.click(await findByText("回答"));
+
+          expect(await findByText("次の問題へ")).toBeInTheDocument();
+        });
+      });
     });
 
-    describe("次の問題へボタンを押したとき", () => {
+    describe("nextQuestionボタンを押したとき", () => {
       describe("最後の問題のとき", () => {
         test("終了画面になる", async () => {
           const onChange = vi.fn();
@@ -393,7 +486,7 @@ if (import.meta.vitest) {
           );
 
           fireEvent.click(await findByText("回答"));
-          fireEvent.click(await findByText("次の問題へ"));
+          fireEvent.click(await findByText("結果を見る"));
 
           expect(onChange).toHaveBeenCalledTimes(2);
           expect(onChange).toHaveBeenCalledWith(GameStatus.PLAYING);
