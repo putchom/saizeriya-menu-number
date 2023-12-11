@@ -1,4 +1,3 @@
-import "./App.css";
 import { StartPage } from "./pages/StartPage";
 import { PlayingPage } from "./pages/PlayingPage";
 import { EndPage } from "./pages/EndPage";
