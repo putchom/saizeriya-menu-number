@@ -330,6 +330,21 @@
     "imagePath": "/images/PZ08.png"
   },
   {
+    "id": "PZ51",
+    "name": "マルゲリータピザ Wチーズ",
+    "imagePath": "/images/PZ51.png"
+  },
+  {
+    "id": "PZ52",
+    "name": "バッファローモッツァレラのピザ Wチーズ",
+    "imagePath": "/images/PZ52.png"
+  },
+  {
+    "id": "PZ54",
+    "name": "野菜ときのこのピザ Wチーズ",
+    "imagePath": "/images/PZ54.png"
+  },
+  {
     "id": "RP01",
     "name": "ライス",
     "imagePath": "/images/RP01.png"
