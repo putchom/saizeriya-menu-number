@@ -53,7 +53,7 @@ export const PlayingPage: React.FC = () => {
 
   return (
     <Flex direction="column" gap="5">
-      <Text as="p" align="center" weight="bold" size="5">
+      <Text as="p" align="center" weight="bold" size="5" color="grass">
         {currentMealIndex + 1} / {NUMBER_OF_QUESTIONS}
       </Text>
       <AspectRatio ratio={1 / 1}>
@@ -72,26 +72,7 @@ export const PlayingPage: React.FC = () => {
       <Text as="p" weight="bold" size="6">
         {selectedMeals[currentMealIndex]?.name}
       </Text>
-      <Flex direction="column" gap="1">
-        <Text as="label" htmlFor="user-input" weight="bold" size="2">
-          メニュー番号
-        </Text>
-        <TextField.Root>
-          <TextField.Input
-            id="user-input"
-            size="3"
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            required
-            disabled={showResult}
-          />
-        </TextField.Root>
-      </Flex>
-      <Button onClick={checkAnswer} disabled={showResult} size="3">
-        回答
-      </Button>
-      {showResult && (
+      {showResult ? (
         <Flex direction="column" gap="2">
           {isCorrect ? (
             <Text as="p">大正解！すごいじゃん！</Text>
@@ -100,6 +81,28 @@ export const PlayingPage: React.FC = () => {
           )}
           <Button type="button" onClick={nextQuestion} size="3">
             次の問題へ
+          </Button>
+        </Flex>
+      ) : (
+        <Flex direction="column" gap="2">
+          <Flex direction="column" gap="1">
+            <Text as="label" htmlFor="user-input" weight="bold" size="2">
+              メニュー番号
+            </Text>
+            <TextField.Root>
+              <TextField.Input
+                id="user-input"
+                size="3"
+                type="text"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                required
+                disabled={showResult}
+              />
+            </TextField.Root>
+          </Flex>
+          <Button onClick={checkAnswer} disabled={showResult} size="3">
+            回答
           </Button>
         </Flex>
       )}
@@ -145,7 +148,7 @@ if (import.meta.vitest) {
         </RecoilRoot>,
       );
 
-      expect(await findByText("1 / 10")).toBeInTheDocument();
+      expect(await findByText("1 / 6")).toBeInTheDocument();
     });
 
     test("現在の問題の画像が表示される", async () => {
