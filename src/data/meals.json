@@ -426,8 +426,13 @@
   },
   {
     "id": "TP04",
-    "name": "トッピング粉チーズ(グランモアビア)",
+    "name": "野菜ペースト",
     "imagePath": "/images/TP04.png"
+  },
+  {
+    "id": "TP07",
+    "name": "トッピング粉チーズ(グランモアビア)",
+    "imagePath": "/images/TP07.png"
   },
   {
     "id": "WN01",

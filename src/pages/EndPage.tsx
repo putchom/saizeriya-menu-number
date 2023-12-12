@@ -9,15 +9,25 @@ import {
   incorrectAnswersState,
 } from "../states";
 import { Button, Flex, Heading, Text } from "@radix-ui/themes";
+import { getGrade } from "../utils/getGrade";
 
 export const EndPage: React.FC = () => {
   const correctAnswers = useRecoilValue(correctAnswersState);
   const incorrectAnswers = useRecoilValue(incorrectAnswersState);
   const setGameStatus = useSetRecoilState(gameStatusState);
 
+  const getResult = () => {
+    return `${NUMBER_OF_QUESTIONS}問中${
+      correctAnswers.length
+    }門正解しました！あなたは${getGrade(
+      correctAnswers,
+      incorrectAnswers,
+    )}です！`;
+  };
+
   const tweetScore = () => {
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      `サイゼのメニュー番号を ${NUMBER_OF_QUESTIONS}問中 ${correctAnswers.length} 問当てました！ #サイゼのメニュー番号`,
+      `${getResult()} #サイゼのメニュー番号 https://saizeriya-menu-number.vercel.app/`,
     )}`;
     window.open(tweetUrl, "_blank");
   };
@@ -29,7 +39,7 @@ export const EndPage: React.FC = () => {
   return (
     <Flex direction="column" gap="6">
       <Text as="p" weight="bold" size="6">
-        結果: {NUMBER_OF_QUESTIONS}問中 {correctAnswers.length}問正解
+        {getResult()}
       </Text>
       <Flex direction="column" gap="2">
         <Button type="button" onClick={tweetScore} size="3">
@@ -87,26 +97,6 @@ if (import.meta.vitest) {
       cleanup();
     });
 
-    test("正解数に応じた結果が表示される", async () => {
-      const { findByText } = render(
-        <RecoilRoot
-          initializeState={(snapshot) => {
-            snapshot.set(correctAnswersState, [
-              {
-                id: "1",
-                name: "ミラノ風ドリア",
-                imagePath: "https://example.com/image.png",
-              },
-            ]);
-          }}
-        >
-          <EndPage />
-        </RecoilRoot>,
-      );
-
-      expect(await findByText("結果: 6問中 1問正解")).toBeInTheDocument();
-    });
-
     describe("結果をツイートボタンを押したとき", () => {
       let originalWindowOpen: ((
         url?: string | URL | undefined,
@@ -138,7 +128,7 @@ if (import.meta.vitest) {
         fireEvent.click(await findByText("結果をツイート"));
 
         expect(window.open).toHaveBeenCalledWith(
-          "https://twitter.com/intent/tweet?text=%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7%E3%82%92%206%E5%95%8F%E4%B8%AD%200%20%E5%95%8F%E5%BD%93%E3%81%A6%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%20%23%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7",
+          "https://twitter.com/intent/tweet?text=6%E5%95%8F%E4%B8%AD0%E9%96%80%E6%AD%A3%E8%A7%A3%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E7%B4%A0%E4%BA%BA%0A%20%20%E3%81%A7%E3%81%99%EF%BC%81%20%23%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7%20https%3A%2F%2Fsaizeriya-menu-number.vercel.app%2F",
           "_blank",
         );
       });

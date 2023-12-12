@@ -83,7 +83,7 @@ export const PlayingPage: React.FC = () => {
         <Flex direction="column" gap="2">
           {isCorrect ? (
             <Callout.Root>
-              <Callout.Text>大正解！すごいじゃん！</Callout.Text>
+              <Callout.Text>大正解！さすがです！</Callout.Text>
             </Callout.Root>
           ) : (
             <Callout.Root color="tomato">
