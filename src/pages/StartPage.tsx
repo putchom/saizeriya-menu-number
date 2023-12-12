@@ -12,7 +12,6 @@ import {
 } from "../states";
 import { selectRandomMeals } from "../utils/selectRandomMeals";
 import { Box, Button, Flex, Text } from "@radix-ui/themes";
-import image from "../assets/saizeriya.png";
 
 export const StartPage: React.FC = () => {
   const setCorrectAnswers = useSetRecoilState(correctAnswersState);
@@ -38,7 +37,6 @@ export const StartPage: React.FC = () => {
   return (
     <Box>
       <Flex direction="column" gap="4">
-        <img alt="サイゼリヤ" src={image} />
         <Text as="p" align="center" size="6" weight="bold">
           サイゼの料理の
           <br />
