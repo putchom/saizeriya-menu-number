@@ -19,7 +19,7 @@ export const EndPage: React.FC = () => {
   const getResult = () => {
     return `${NUMBER_OF_QUESTIONS}問中${
       correctAnswers.length
-    }門正解しました！あなたは${getGrade(
+    }問正解しました！あなたは${getGrade(
       correctAnswers,
       incorrectAnswers,
     )}です！`;
