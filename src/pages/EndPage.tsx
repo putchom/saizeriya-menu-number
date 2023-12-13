@@ -128,7 +128,7 @@ if (import.meta.vitest) {
         fireEvent.click(await findByText("結果をツイート"));
 
         expect(window.open).toHaveBeenCalledWith(
-          "https://twitter.com/intent/tweet?text=6%E5%95%8F%E4%B8%AD0%E9%96%80%E6%AD%A3%E8%A7%A3%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E7%B4%A0%E4%BA%BA%0A%20%20%E3%81%A7%E3%81%99%EF%BC%81%20%23%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7%20https%3A%2F%2Fsaizeriya-menu-number.vercel.app%2F",
+          "https://twitter.com/intent/tweet?text=6%E5%95%8F%E4%B8%AD0%E5%95%8F%E6%AD%A3%E8%A7%A3%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%81%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E7%B4%A0%E4%BA%BA%E3%81%A7%E3%81%99%EF%BC%81%20%23%E3%82%B5%E3%82%A4%E3%82%BC%E3%81%AE%E3%83%A1%E3%83%8B%E3%83%A5%E3%83%BC%E7%95%AA%E5%8F%B7%20https%3A%2F%2Fsaizeriya-menu-number.vercel.app%2F",
           "_blank",
         );
       });
